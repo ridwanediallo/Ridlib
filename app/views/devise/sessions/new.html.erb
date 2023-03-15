@@ -1,0 +1,37 @@
+<div class="flex items-center justify-center ">
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="flex flex-col items-center justify-center bg-white rounded-lg overflow-hidden shadow-lg pb-20">
+  <h3 class="bg-blue-600 py-5 text-white font-bold hover:bg-gray-400 w-full text-center">SIGN IN</h3>
+  <form class="">
+    <div class="my-4 px-10 mt-10 mb-8">
+      <%= f.email_field :email, placeholder: "email", class: "border-none bg-gray-400 rounded-full placeholder-white" %>
+    </div>
+    <div class="mb-6">
+        <%= f.password_field :password, class: "border-none bg-gray-400 rounded-full placeholder-white", placeholder: "password" %>
+
+    <% if devise_mapping.rememberable? %>
+       <div class="mt-5">
+         <%= f.check_box :remember_me, class: 'h-6 w-6 rounded-md shadow mr-2' %>
+         <%= f.label :remember_me %>
+       </div>
+    <% end %>
+    <%= link_to "Forgot your password? 🤦‍♂️", new_password_path(resource_name), class: 'block py-5 ml-20' %>
+    </div>
+    <div class="self-end">
+
+    </div>
+    <div class="">
+      <%= f.submit "SIGN IN", class: "bg-blue-600 text-white px-28 rounded-full py-2 font-bold cursor-pointer" %>
+    </div>
+
+  <div class="text-center mt-12">
+    <p class="mb-5">Don't have an account?</p>
+    <%= link_to "SIGN UP NOW", new_registration_path(resource_name), class: 'text-blue-600 font-bold cursor-pointer' %>
+  </div>
+  </form>
+</div>
+<% end %>
+</div>
+
+
