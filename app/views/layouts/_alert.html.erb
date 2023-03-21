@@ -1,5 +1,5 @@
 <% if flash[:notice] %>
-<div id="alert" role="alert" class="w-96 rounded-xl border border-gray-100 p-4 shadow-xl">
+<div data-controller="flash" role="alert" class="flash_msg w-96 rounded-xl border border-gray-100 p-4 shadow-xl">
   <div class="flex items-start gap-4">
     <span class="text-green-600">
       <svg
@@ -22,7 +22,7 @@
       <p class="mt-1 text-sm text-gray-700"> <%= notice %></p>
     </div>
 
-    <button id="close_icon" class="text-gray-500 transition hover:text-gray-600">
+    <button data-action="flash#dismiss" type="button" class="text-gray-500 transition hover:text-gray-600">
       <span class="sr-only">Dismiss popup</span>
 
       <span class="text-green-600 material-symbols-outlined">close</span>
