@@ -4,6 +4,15 @@
     <title>BookReview</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--Font awesome icons-->
+    <link
+      rel="stylesheet"
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -15,13 +24,14 @@
   <body>
     <%= render partial: 'layouts/navbar' %>
     <%= render partial: 'layouts/alert' %>
-    <main class="container mx-auto mt-28 px-5">
+    <main class="container mx-auto mt-10 px-5">
 
       <%= yield %>
     </main>
 
-    <footer class="bg-gray-200 fixed bottom-0 w-full py-7 border-4 border-t-blue-600">
+    <!-- <footer class="bg-gray-200 fixed bottom-0 w-full py-7 border-4 border-t-blue-600">
       <div class="container">Ridwan</div>
-    </footer>
+    </footer> -->
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>

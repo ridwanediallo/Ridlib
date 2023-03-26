@@ -73,3 +73,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'devise'
+gem 'stimulus-rails'
+gem "font-awesome-sass", "~> 6.3.0"
+
