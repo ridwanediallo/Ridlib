@@ -1,0 +1,31 @@
+ <% invalid = @user.errors.include?(:email) %>
+
+<div class="flex items-center justify-center ">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<div class="flex flex-col items-center justify-center bg-white rounded-lg overflow-hidden shadow-lg pb-20">
+  <h3 class="bg-blue-600 py-5 text-white font-bold hover:bg-gray-400 w-full text-center">RESET PASSWORD</h3>
+    <div class="my-4 px-10 mt-10 mb-8">
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Email
+      </label>
+      <%= f.email_field :email, placeholder: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+       <% if invalid %>
+        <div class="text-red-600">
+            <% @user.errors.full_messages_for(:email).each do |error_message| %>
+              <%= error_message %>.
+            <% end %>
+        </div>
+       <% end %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "SUBMIT", class: "bg-blue-600 text-white px-28 rounded-full py-2 font-bold cursor-pointer" %>
+  </div>
+<% end %>
+<div class="mt-8 ">
+  <%= link_to "Log in", new_session_path(resource_name), class: 'text-blue-600 font-bold cursor-pointer mr-10' %>
+  <%= link_to "Sign up", new_registration_path(resource_name), class: 'text-blue-600 font-bold cursor-pointer' %>
+</div>
+
+</div>
+</div>
