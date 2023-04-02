@@ -11,8 +11,11 @@
 
     <nav class="md:ml-auto flex flex-wrap items-center text-gray-700 text-md font-bold justify-center">
         <% if user_signed_in? %>
-          <%= link_to current_user.name, edit_user_registration_path, class:"mr-5 hover:text-gray-900" %>
-          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"mr-5 hover:text-gray-900" %>
+          <div class="flex justify-center items-center">
+            <%= link_to current_user.name, edit_user_registration_path, class:"hover:text-gray-900" %>
+            <%= render partial: 'layouts/dropdown' %>
+          </div>
+
         <% else %>
           <%= link_to "Sign In", new_user_session_path, class:"mr-5 hover:text-gray-900" %>
           <%= link_to "Sign up", new_user_registration_path, class:"mr-5 hover:text-gray-900"%>
