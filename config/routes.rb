@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :books
+  # resources :authors
+  resources :authors do
+    resources :books
+  end
+  # get '/get_books' to: 'books#get_books'
+  # resources :books
   devise_for :users, controllers: {
     registrations: 'registrations'
   }
@@ -9,3 +14,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 end
+
+  def get_books
+    url = 'https://gutendex.com/books'
+    response = RestClient.get(url)
+    render json: response
+  end
