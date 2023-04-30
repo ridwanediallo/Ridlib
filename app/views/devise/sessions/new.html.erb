@@ -22,13 +22,11 @@
     </div>
 
     <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2">
-        Password
-      </label>
-      <div class="relative">
-         <%= f.password_field :password, id: "password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "confirm password" %>
-         <i id="visibility_btn_one"><span id="icon_one" class="cursor-pointer material-symbols-outlined absolute inset-y-0 right-0 grid place-content-center px-4">visibility_off</span></i>
-      </div>
+       <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+       <div class="relative">
+         <%= f.password_field :password, id: "password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "password" %>
+         <span id="password_toggle" class="cursor-pointer material-symbols-outlined absolute inset-y-0 right-0 grid place-content-center px-4">visibility</span>
+       </div>
       <% if invalid %>
         <div class="text-red-600">
             <% @user.errors.full_messages_for(:password).each do |error_message| %>
