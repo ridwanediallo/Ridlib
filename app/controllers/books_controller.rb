@@ -1,10 +1,30 @@
+require 'net/http'
+
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-
   # GET /books or /books.json
   def index
-    @books = Book.all
+    # @books = Book.all
+    url = "https://gutendex.com/books"
+    # uri = URI(url)
+    response = RestClient.get_response(uri)
+    puts response
+    result = JSON.parse(response)
+    get_books = result['data']
+    puts get_books
+
+    #  url = "https://www.googleapis.com/books/v1/volumes?q=#{params[:search]}&maxResults=15&key=#{ENV["API_KEY"]}"
+    #  response = HTTParty.get(url)
+    #  result = response.parsed_response
+
   end
+
+  def get_books
+     url = "https://gutendex.com/books"
+     response = HTTParty.get_response(url)
+     result = response.parsed_response
+  end
+
 
   # GET /books/1 or /books/1.json
   def show
@@ -25,7 +45,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
+        format.html { redirect_to author_books_path, notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +58,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
+        format.html { redirect_to author_books_path, notice: "Book was successfully updated." }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,7 +80,12 @@ class BooksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params[:id])
+      # @book = Book.find(params[:id])
+      if params[:id] == "show"
+        @book = Book.new
+      else
+        @book = Book.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.

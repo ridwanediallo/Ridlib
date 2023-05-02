@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   # resources :authors
+  # get 'books/index'
   resources :authors do
     resources :books
   end
-  # get '/get_books' to: 'books#get_books'
+  # get 'get_books' to: 'books#get_books'
   # resources :books
   devise_for :users, controllers: {
     registrations: 'registrations'

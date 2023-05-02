@@ -75,6 +75,6 @@ group :test do
 end
 
 gem 'devise'
-gem 'stimulus-rails'
 gem "font-awesome-sass", "~> 6.3.0"
+gem 'rest-client', '~> 2.1'
 
