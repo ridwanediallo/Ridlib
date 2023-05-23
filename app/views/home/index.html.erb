@@ -1,10 +1,33 @@
-<div>
-  <h1 class="font-bold text-4xl">Book Review</h1>
-  <p>
-    Is a book-tracking application built using Ruby on Rails and PostgreSQL. The
-    app is similar to Goodreads and allows users to keep track of books they
-    have read, are currently reading, and want to read in the future. Users can
-    also rate and review books, create and join book clubs, and discover new
-    books to read through personalized recommendations.
-  </p>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      <% @books.each do |book| %>
+        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+          <a class="block relative h-48 rounded overflow-hidden">
+            <% if book['formats']['image/jpeg'] %>
+              <img alt="" class="object-cover object-center w-full h-full block" src="<%= book['formats']['image/jpeg'] %>">
+            <% else %>
+              <img alt="" class="object-cover object-center w-full h-full block" src="https://via.placeholder.com/150">
+            <% end %>
+          </a>
+          <div class="mt-4">
+            <% if book['authors'].any? %>
+              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><%= book['authors'][0]['name'] %></h3>
+            <% end %>
+            <h2 class="text-gray-900 title-font text-lg font-medium"><%= book['title'] %></h2>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<div class="bg-white p-4 flex items-center">
+  <% if @page.to_i > 1 %>
+    <%= link_to "Previous", root_path(page: @page.to_i - 1 ) %>
+  <% end %>
+
+  <% if @page.to_i %>
+    <%= link_to "Next", root_path(page: @page.to_i + 1), class: 'ml-24' %>
+  <% end %>
 </div>
