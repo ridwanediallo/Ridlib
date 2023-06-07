@@ -2,44 +2,22 @@ require 'net/http'
 
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  # GET /books or /books.json
+
   def index
-    # @books = Book.all
-    url = "https://gutendex.com/books"
-    # uri = URI(url)
-    response = RestClient.get_response(uri)
-    puts response
-    result = JSON.parse(response)
-    get_books = result['data']
-    puts get_books
-
-    #  url = "https://www.googleapis.com/books/v1/volumes?q=#{params[:search]}&maxResults=15&key=#{ENV["API_KEY"]}"
-    #  response = HTTParty.get(url)
-    #  result = response.parsed_response
-
-  end
-
-  def get_books
-     url = "https://gutendex.com/books"
-     response = HTTParty.get_response(url)
-     result = response.parsed_response
+    @books = Book.all
   end
 
 
-  # GET /books/1 or /books/1.json
   def show
   end
 
-  # GET /books/new
   def new
     @book = Book.new
   end
 
-  # GET /books/1/edit
   def edit
   end
 
-  # POST /books or /books.json
   def create
     @book = Book.new(book_params)
 
@@ -54,7 +32,6 @@ class BooksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /books/1 or /books/1.json
   def update
     respond_to do |format|
       if @book.update(book_params)
@@ -67,7 +44,7 @@ class BooksController < ApplicationController
     end
   end
 
-  # DELETE /books/1 or /books/1.json
+
   def destroy
     @book.destroy
 
@@ -78,17 +55,27 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_book
-      # @book = Book.find(params[:id])
       if params[:id] == "show"
         @book = Book.new
       else
-        @book = Book.find(params[:id])
+       book_id = params[:id]
+       @book = fetch_book(book_id)
       end
     end
 
-    # Only allow a list of trusted parameters through.
+    def fetch_book(book_id)
+    connection = Faraday.new(url: 'https://gutendex.com')
+    response = connection.get("/books/#{book_id}/")
+
+    if response.body.present?
+      JSON.parse(response.body)
+    else
+      puts "Empty response body received."
+    end
+  end
+
     def book_params
       params.require(:book).permit(:title, :author_id, :description, :publication_date, :image_url)
     end
