@@ -4,8 +4,9 @@ class HomeController < ApplicationController
      conn = Faraday.new(url: 'https://gutendex.com')
      response = conn.get("/books/?page=#{@page}")
      result = JSON.parse(response.body)
-     @books = result['results']
+     @fetched_books = result['results']
      @next_page = result['next']
      @previous_page = result['previous']
   end
+
 end

@@ -1,9 +1,9 @@
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4">
-      <% @books.each do |book| %>
+      <% @fetched_books.each do |book| %>
         <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-          <a class="block relative h-48 rounded overflow-hidden">
+          <a class="block relative h-48 rounded overflow-hidden" href="books/<%= book['id'] %>">
             <% if book['formats']['image/jpeg'] %>
               <img alt="" class="object-cover object-center w-full h-full block" src="<%= book['formats']['image/jpeg'] %>">
             <% else %>
@@ -24,10 +24,10 @@
 
 <div class="bg-white p-4 flex items-center">
   <% if @page.to_i > 1 %>
-    <%= link_to "Previous", root_path(page: @page.to_i - 1 ) %>
+   <%= link_to "Previous", root_path(page: @page.to_i - 1 ), class: "bg-blue-600 p-2 text-white rounded" %>
   <% end %>
 
   <% if @page.to_i %>
-    <%= link_to "Next", root_path(page: @page.to_i + 1), class: 'ml-24' %>
+   <%= link_to "Next", root_path(page: @page.to_i + 1), class: "bg-blue-600 p-2 text-white rounded ml-24" %>
   <% end %>
 </div>
