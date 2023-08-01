@@ -9,6 +9,26 @@ class BooksController < ApplicationController
 
 
   def show
+     @comment = Comment.new
+      # Fetch the book from the API
+      gutenburg_book_id = params[:id]
+
+      @book = Book.find_by(book_id: gutenburg_book_id)
+
+     # If the book is not found in the database, fetch and save it
+    if @book.nil?
+       @gutenburg_book = GutenburgBook.fetch_book(gutenburg_book_id)
+
+    # Create and save the book in the database
+       @book = Book.new(
+                  book_id: @gutenburg_book["id"],
+                  title: @gutenburg_book["title"],
+                  author_name: @gutenburg_book["authors"][0]['name'],
+                  subject: @gutenburg_book["subjects"][0],
+                  image_url: @gutenburg_book["formats"]["image/jpeg"],
+                  download_count: @gutenburg_book["download_count"] )
+    end
+    @book.save!
   end
 
   def new
@@ -19,6 +39,7 @@ class BooksController < ApplicationController
   end
 
   def create
+
     @book = Book.new(book_params)
 
     respond_to do |format|
@@ -60,21 +81,10 @@ class BooksController < ApplicationController
       if params[:id] == "show"
         @book = Book.new
       else
-       book_id = params[:id]
-       @book = fetch_book(book_id)
+       gutenburg_book_id = params[:id]
+       @book = GutenburgBook.fetch_book(gutenburg_book_id)
       end
     end
-
-    def fetch_book(book_id)
-    connection = Faraday.new(url: 'https://gutendex.com')
-    response = connection.get("/books/#{book_id}/")
-
-    if response.body.present?
-      JSON.parse(response.body)
-    else
-      puts "Empty response body received."
-    end
-  end
 
     def book_params
       params.require(:book).permit(:title, :author_id, :description, :publication_date, :image_url)
