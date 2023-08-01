@@ -1,14 +1,15 @@
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
-       <% if @book['formats']['image/jpeg'] %>
-         <img alt="" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="<%= @book['formats']['image/jpeg'] %>">
+       <% if @book.image_url %>
+         <img alt="" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="<%= @book.image_url %>">
        <% else %>
          <img alt="" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://via.placeholder.com/150">
        <% end %>
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h2 class="text-sm title-font text-gray-500 tracking-widest"><%= @book['authors'][0]['name'] %></h2>
-        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= @book['title'] %></h1>
+        <h2 class="text-sm title-font text-gray-500 tracking-widest"><%= @book.subject %></h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium my-2"><%= @book.title %></h1>
+        <h2 class="text-sm title-font text-gray-500 tracking-widest mb-6"><%= @book.author_name %></h2>
         <div class="flex mb-4">
           <span class="flex items-center">
             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
@@ -40,6 +41,14 @@
           </button>
         </div>
       </div>
-    </div>
+
+
+<%= form_for(@comment, url: book_comments_path(book_id: @book.book_id)) do |f| %>
+  <%= f.hidden_field :book_id, value: @book.book_id %> 
+  <%= f.text_area :comment, placeholder: "Enter your comment here..." %>
+  <%= f.submit "Add Comment" %>
+<% end %>
+
+
   </div>
 </section>
