@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  
  def index
      @page = params[:page] || 1
      conn = Faraday.new(url: 'https://gutendex.com')
