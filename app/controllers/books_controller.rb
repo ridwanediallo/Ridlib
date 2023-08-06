@@ -9,6 +9,7 @@ class BooksController < ApplicationController
 
 
   def show
+     @book_comment = Comment.includes(:book, :user).all
      @comment = Comment.new
       # Fetch the book from the API
       gutenburg_book_id = params[:id]
