@@ -24,12 +24,38 @@ class BooksController < ApplicationController
        @book = Book.new(
                   book_id: @gutenburg_book["id"],
                   title: @gutenburg_book["title"],
-                  author_name: @gutenburg_book["authors"][0]['name'],
+                  # author_name: @gutenburg_book["authors"][0]['name'],
                   subject: @gutenburg_book["subjects"][0],
                   image_url: @gutenburg_book["formats"]["image/jpeg"],
                   download_count: @gutenburg_book["download_count"] )
     end
     @book.save!
+  end
+
+    def create_comment
+       @comment = Comment.new(comment_params)
+       @comment.user = current_user
+
+       # Fetch the book from the database based on book_id
+       @book = Book.find_by(book_id: params[:id])
+
+       @comment.book = @book
+
+      if @comment.book.nil?
+        flash[:error] = "Book not found."
+        redirect_to root_url
+        return
+      end
+
+       respond_to do |format|
+         if @comment.save
+           format.html { redirect_to book_url(@comment.book), notice: "Comment was successfully created." }
+           format.json { render :show, status: :created, location: @comment }
+         else
+           format.html { render :show, status: :unprocessable_entity }
+           format.json { render json: @comment.errors, status: :unprocessable_entity }
+         end
+       end
   end
 
   def new
@@ -89,5 +115,9 @@ class BooksController < ApplicationController
 
     def book_params
       params.require(:book).permit(:title, :author_id, :description, :publication_date, :image_url)
+    end
+
+    def comment_params
+      params.require(:comment).permit(:comment, :user_id, :book_id)
     end
 end
