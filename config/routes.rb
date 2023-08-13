@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
   resources :books do
+    member do
+      post :create_comment
+
+    end
     resources :comments, only: [:create]
   end
 
