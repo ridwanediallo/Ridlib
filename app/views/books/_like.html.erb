@@ -1,5 +1,5 @@
 <div class="flex jutify-center items-center">
-  <%= @book.likes.count %> Likes
+  <%= pluralize(@book.likes.count, 'Like') %>
   <% like = current_user.likes.find_by(book: @book) %>
   <% if like.nil? %>
   <form action="/likes" method="post">
