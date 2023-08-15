@@ -46,10 +46,13 @@ class BooksController < ApplicationController
         redirect_to root_url
         return
       end
+      # book_url(book) => same as book_url(book.to_param) same as book_url(book.id)
+      # book_url(12)
+      # /book/12
 
        respond_to do |format|
          if @comment.save
-           format.html { redirect_to book_url(@comment.book), notice: "Comment was successfully created." }
+           format.html { redirect_to book_url(@comment.book.book_id), notice: "Comment was successfully created." }
            format.json { render :show, status: :created, location: @comment }
          else
            format.html { render :show, status: :unprocessable_entity }
