@@ -58,6 +58,16 @@ class BooksController < ApplicationController
        end
   end
 
+  # def rate
+  #     @rate = current_user.ratings.new(rate_params)
+  #     if !@rate.save
+  #       flash[:notice] = @rate.errors.full_messages.to_sentence
+  #       redirect_to book_url(@rate.book.book_id), notice: "You rated this book."
+  #     end
+  # end
+
+
+
   def new
     @book = Book.new
   end
@@ -120,4 +130,9 @@ class BooksController < ApplicationController
     def comment_params
       params.require(:comment).permit(:comment, :user_id, :book_id)
     end
+
+    def rate_params
+      params.require(:rating).permit(:book_id)
+    end
+
 end
