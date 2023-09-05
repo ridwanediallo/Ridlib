@@ -3,7 +3,7 @@
  <div class="flex items-center">
   <% if user_rating %>
     <% rating = user_rating.rating %>
-    <p>Your rating: <%= rating %> star(s)</p>
+    <p class="pr-4">Your rating: <%= pluralize(rating, 'star')  %></p>
   <% else %>
     <p>You haven't rated this book yet.</p>
   <% end %>
