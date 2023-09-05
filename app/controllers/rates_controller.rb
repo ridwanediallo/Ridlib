@@ -2,13 +2,13 @@ class RatesController < ApplicationController
 
     def create
 
-    @rate = current_user.ratings.find_by(book_id: rate_params[:book_id])
+      @rate = current_user.ratings.find_by(book_id: rate_params[:book_id])
 
-    if @rate
-      @rate.rating = rate_params[:rating]
-    else
-      @rate = current_user.ratings.new(rate_params)
-    end
+      if @rate
+        @rate.rating = rate_params[:rating]
+      else
+        @rate = current_user.ratings.new(rate_params)
+      end
 
     respond_to do |format|
       if @rate.save
