@@ -22,7 +22,7 @@
   </div>
 </section>
 
-<div class="bg-white p-4 flex items-center">
+<div class="bg-white p-4 flex items-center mb-32">
   <% if @page.to_i > 1 %>
    <%= link_to "Previous", root_path(page: @page.to_i - 1 ), class: "bg-blue-600 p-2 text-white rounded" %>
   <% end %>
