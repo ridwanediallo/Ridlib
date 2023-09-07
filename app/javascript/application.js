@@ -2,31 +2,34 @@
 import '@hotwired/turbo-rails';
 import 'controllers';
 
-const btn_one = document.getElementById('visibility_btn_one');
-const btn_two = document.getElementById('visibility_btn_two');
 
-btn_one.addEventListener('click', () => {
-  const password = document.getElementById('password');
-  const icon_one = document.getElementById('icon_one');
+document.addEventListener('turbo:load', () => {
+ const passwordToggle = document.getElementById('password_toggle');
+ const passwordConfirmationToggle = document.getElementById(
+   'password_confirmation_toggle'
+ );
+ const passwordField = document.getElementById('password');
+ const passwordConfirmationField = document.getElementById(
+   'password_confirmation'
+ );
 
-  if (password.type === 'password') {
-    password.type = 'text';
-    icon_one.innerText = 'visibility';
-  } else {
-    password.type = 'password';
-    icon_one.innerText = 'visibility_off';
-  }
-});
+ passwordToggle.addEventListener('click', () => {
+   if (passwordField.type === 'password') {
+     passwordField.type = 'text';
+     passwordToggle.innerText = 'visibility_off';
+   } else {
+     passwordField.type = 'password';
+     passwordToggle.innerText = 'visibility';
+   }
+ });
 
-btn_two.addEventListener('click', () => {
-  const confirmPassword = document.getElementById('confirm_password');
-  const icon_two = document.getElementById('icon_two');
-
-  if (confirmPassword.type === 'password') {
-    confirmPassword.type = 'text';
-    icon_two.innerText = 'visibility';
-  } else {
-    confirmPassword.type = 'password';
-    icon_two.innerText = 'visibility_off';
-  }
+ passwordConfirmationToggle.addEventListener('click', () => {
+   if (passwordConfirmationField.type === 'password') {
+     passwordConfirmationField.type = 'text';
+     passwordConfirmationToggle.innerText = 'visibility_off';
+   } else {
+     passwordConfirmationField.type = 'password';
+     passwordConfirmationToggle.innerText = 'visibility';
+   }
+ });
 });
