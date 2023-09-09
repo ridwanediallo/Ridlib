@@ -11,15 +11,17 @@
         <h1 class="text-gray-900 text-3xl title-font font-medium my-2"><%= @book.title %></h1>
         <h2 class="text-sm title-font text-gray-500 tracking-widest mb-6"><%= @book.author_name %></h2>
           <%= render 'rate' %>
-        <div class="flex justify-between">
+        <div class="flex justify-between gap-4">
           <span class="title-font font-medium text-2xl text-gray-900">Downloaded:  <%= @book['download_count'] %></span>
-          <!-- <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">comment</button> -->
+          <%= link_to 'Comment', new_book_comment_path(@book.book_id), data: { turbo_frame: 'modal' }, class: "flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" %>
           <%= render 'like' %>
         </div>
       </div>
     </div>
 
   </div>
+
+  <%= turbo_frame_tag 'modal' %>
 
   <%= render 'comment' %>
 </section>
