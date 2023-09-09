@@ -7,32 +7,33 @@ class CommentsController < ApplicationController
 
 
   def new
+    @book = Book.find_by(book_id: params[:book_id])
     @comment = Comment.new
   end
 
-  # def create
-  #      @comment = Comment.new(comment_params)
-  #      @comment.user = current_user
+  def create
+       @comment = Comment.new(comment_params)
+       @comment.user = current_user
 
-  #      # Fetch the book from the database based on book_id
-  #      @comment.book = Book.find_by(book_id: params[:book_id])
+       # Fetch the book from the database based on book_id
+       @comment.book = Book.find_by(book_id: params[:book_id])
 
-  #     if @comment.book.nil?
-  #       flash[:error] = "Book not found."
-  #       redirect_to root_url
-  #       return
-  #     end
+      if @comment.book.nil?
+        flash[:error] = "Book not found."
+        redirect_to root_url
+        return
+      end
 
-  #      respond_to do |format|
-  #        if @comment.save
-  #          format.html { redirect_to book_url(@comment.book), notice: "Comment was successfully created." }
-  #          format.json { render :show, status: :created, location: @comment }
-  #        else
-  #          format.html { render :new, status: :unprocessable_entity }
-  #          format.json { render json: @comment.errors, status: :unprocessable_entity }
-  #        end
-  #      end
-  # end
+       respond_to do |format|
+         if @comment.save
+           format.html { redirect_to book_url(@comment.book), notice: "Comment was successfully created." }
+           format.json { render :show, status: :created, location: @comment }
+         else
+           format.html { render :new, status: :unprocessable_entity }
+           format.json { render json: @comment.errors, status: :unprocessable_entity }
+         end
+       end
+  end
 
   def destroy
     @comment.destroy
