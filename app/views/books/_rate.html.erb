@@ -5,7 +5,7 @@
     <% rating = user_rating.rating %>
     <p class="pr-4">Your rating: <%= pluralize(rating, 'star')  %></p>
   <% else %>
-    <p>You haven't rated this book yet.</p>
+    <p>No rating yet.</p>
   <% end %>
 
   <% (1..5).each do |rate| %>
