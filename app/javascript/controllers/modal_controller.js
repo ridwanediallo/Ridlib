@@ -1,19 +1,17 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
+  static targets = ['modal'];
+
   connect() {
-    this.overlayTarget.addEventListener('click', this.closeModal);
+    console.log('Modal Controller connected');
   }
 
-  disconnect() {
-    this.overlayTarget.removeEventListener('click', this.closeModal);
+  open() {
+    this.modalTarget.style.display = 'block';
   }
 
-  closeModal = () => {
-    this.element.classList.add('hidden');
-  };
-
-  get overlayTarget() {
-    return this.element.querySelector('.bg-opacity-75');
+  close() {
+    this.modalTarget.style.display = 'none';
   }
 }
