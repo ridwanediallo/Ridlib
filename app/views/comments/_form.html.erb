@@ -1,3 +1,4 @@
+<div id="myModal" class="modal">
 <%= form_for(@comment, url: create_comment_book_path(@book.book_id)) do |f| %>
 <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
   <%= f.hidden_field :book_id, value: @book.book_id %> <%= f.text_area :comment, class: "w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" ,placeholder: "Enter your comment here..." %>
@@ -5,8 +6,9 @@
 <div
   class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600"
 >
-  <%= f.submit "Add Comment", class: "flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" %>
-  <!-- <a href="book_url" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Cancel</a> -->
+  <%= f.submit "Add Comment", class: "flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" %>
+   <button class='flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded' data-turbo-frame="_modal" data-action="click->modal#close">Or close</button>
 </div>
 <% end %>
 
+</div>
