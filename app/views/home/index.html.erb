@@ -1,24 +1,13 @@
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-10 mx-auto">
-    <div class="flex flex-wrap -m-4">
-      <% @fetched_books.each do |book| %>
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-          <a class="block relative h-48 rounded overflow-hidden" href="books/<%= book['id'] %>">
-            <% if book['formats']['image/jpeg'] %>
-              <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block" src="<%= book['formats']['image/jpeg'] %>">
-            <% else %>
-              <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block" src="https://via.placeholder.com/150">
-            <% end %>
-          </a>
-          <div class="mt-4">
-            <% if book['authors'].any? %>
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><%= book['authors'][0]['name'] %></h3>
-            <% end %>
-            <h2 class="text-gray-900 title-font text-lg font-medium"><%= book['title'] %></h2>
-          </div>
-        </div>
-      <% end %>
-    </div>
+     <div class="flex flex-col items-center justify-center" data-controller="content-loader" data-content-loader-url-value="<%= home_lazy_load_path %>">
+         <!-- <div class="flex items-center mb-4">
+            <i class="fas fa-spinner fa-spin text-4xl mr-2"></i>
+         </div>
+         <span>Loading posts...</span> -->
+         <%=  render 'books'%>
+     </div>
+
   </div>
 </section>
 

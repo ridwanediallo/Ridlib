@@ -1,0 +1,19 @@
+<div class="flex flex-wrap -m-4">
+    <% @fetched_books.each do |book| %>
+    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+        <a class="block relative h-48 rounded overflow-hidden" href="books/<%= book['id'] %>">
+        <% if book['formats']['image/jpeg'] %>
+            <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block" src="<%= book['formats']['image/jpeg'] %>">
+        <% else %>
+            <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block" src="https://via.placeholder.com/150">
+        <% end %>
+        </a>
+        <div class="mt-4">
+        <% if book['authors'].any? %>
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><%= book['authors'][0]['name'] %></h3>
+        <% end %>
+        <h2 class="text-gray-900 title-font text-lg font-medium"><%= book['title'] %></h2>
+        </div>
+    </div>
+    <% end %>
+</div>
