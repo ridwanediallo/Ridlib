@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'home/lazy_load', to: 'home#lazy_load'
 
   resources :books do
     member do
