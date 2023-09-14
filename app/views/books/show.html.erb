@@ -21,7 +21,7 @@
 
   </div>
 
-  <%= turbo_frame_tag 'modal' %>
-
-  <%= render 'comment' %>
+  <%= turbo_frame_tag 'modal' do %>
+   <%= render 'comment' %>
+ <% end %>
 </section>
