@@ -1,7 +1,7 @@
 <div class="container mb-40">
       <div class="lg:w-4/5 mx-auto">
            <hr class="mb-4 text:blue-600">
-        <div class="lg:w-2/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+        <div class="lg:w-2/4 mb-4 border sm:hidden border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
           <%= form_for(@comment, url: create_comment_book_path(@book.book_id)) do |f| %>
              <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                  <%= f.hidden_field :book_id, value: @book.book_id %>
