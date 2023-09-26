@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_020215) do
   create_table "ratings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
-    t.integer "rating", default: 0
+    t.integer "rating", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_ratings_on_book_id"
