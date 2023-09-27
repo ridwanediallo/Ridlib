@@ -4,13 +4,14 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
 
   def index
-    @books = Book.all
+    @books = Book.al
   end
 
 
   def show
      @book_comment = Comment.includes(:book, :user).all
      @comment = Comment.new
+
       # Fetch the book from the API
       gutenburg_book_id = params[:id]
 
@@ -30,6 +31,8 @@ class BooksController < ApplicationController
                   download_count: @gutenburg_book["download_count"] )
     end
     @book.save!
+
+    @user_rating = current_user.ratings.find_by(book: @book)
   end
 
     def create_comment
