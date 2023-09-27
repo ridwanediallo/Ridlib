@@ -10,10 +10,10 @@
         <h2 class="text-sm title-font text-gray-500 tracking-widest"><%= @book.subject %></h2>
         <h1 class="text-gray-900 text-3xl title-font font-medium my-2"><%= @book.title %></h1>
         <h2 class="text-sm title-font text-gray-500 tracking-widest mb-6"><%= @book.author_name %></h2>
-          <%= render 'rate' %>
+          <%= render partial: 'rate', locals: { user_rating: @user_rating } %>
         <div class="flex justify-between gap-4 flex-wrap">
           <span class="title-font font-medium text-2xl text-gray-900">Downloaded:  <%= @book['download_count'] %></span>
-          <%= link_to 'Comment', new_book_comment_path(@book.book_id), data: { turbo_frame: 'modal' }, class: "hidden md:block flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" %>
+          <%= link_to 'Comment', new_book_comment_path(@book.book_id), data: { turbo_frame: 'modal' }, class: "hidden md:block flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded" %>
           <%= render 'like' %>
         </div>
       </div>
