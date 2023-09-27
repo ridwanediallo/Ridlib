@@ -1,30 +1,21 @@
 <div class="flex mb-4">
-  <% user_rating = current_user.ratings.find_by(book: @book) %>
- <div class="flex items-center">
-  <% if user_rating %>
-    <% rating = user_rating.rating %>
-    <p class="pr-4">Your rating: <%= pluralize(rating, 'star')  %></p>
-  <% else %>
-    <p>No rating yet.</p>
-  <% end %>
+  <div class="flex items-center">
+    <% if user_rating %>
+      <% rating = user_rating.rating %>
+      <p class="pr-4">Your rating: <%= pluralize(rating, 'star') %></p>
+    <% else %>
+      <p>No rating yet.</p>
+    <% end %>
 
-  <% (1..5).each do |rate| %>
-    <form action="/rates" method="post">
-      <input
-        type="hidden"
-        name="authenticity_token"
-        value="<%= form_authenticity_token %>"
-      />
-      <input type="hidden" name="rating[book_id]" value="<%= @book.id %>" />
-      <input type="hidden" name="rating[rating]" value="<%= rate %>" />
-      <button
-        type="submit"
-        data-turbo='false'
-      >
-        <%= inline_svg_tag("star.svg", alt: "#{rate} star", class: "w-8 h-8 #{user_rating && rate <= rating ? 'fill-yellow-400 stroke-yellow-400' : 'fill-transparent stroke-gray-400'}") %>
-      </button>
-    </form>
-  <% end %>
+    <% (1..5).each do |rate| %>
+      <%= button_to "/rates", method: :post, remote: true, params: { rating: { book_id: @book.id, rating: rate } }, form: { "data-turbo" => false } do %>
+        <% if user_rating && rate <= rating %>
+              <%= inline_svg_tag("star.svg", alt: "#{rate} star", class: "w-8 h-8 fill-yellow-400 stroke-yellow-400") %>
+        <% else %>
+              <%= inline_svg_tag("star.svg", alt: "#{rate} star", class: "w-8 h-8 fill-transparent stroke-gray-400") %>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
