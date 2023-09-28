@@ -1,32 +1,14 @@
-<%= form_with(model: @comment, class: "contents") do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="my-5">
-    <%= form.label :comment %>
-    <%= form.text_area :comment, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :book_id %>
-    <%= form.text_field :book_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+<div class="modal">
+<%= form_for(@comment, url: create_comment_book_path(@book.book_id)) do |f| %>
+<div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+  <%= f.hidden_field :book_id, value: @book.book_id %> <%= f.text_area :comment, class: "w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" ,placeholder: "Enter your comment here..." %>
+</div>
+<div
+  class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600"
+>
+  <%= f.submit "Add Comment", class: "flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded" %>
+   <button class='flex ml-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded' data-turbo-frame="_modal" data-action="click->modal#close">Or close</button>
+</div>
 <% end %>
+
+</div>

@@ -22,13 +22,13 @@
   </head>
 
   <body class="relative">
-    <%= render partial: 'layouts/navbar' %>
-    <%= render partial: 'layouts/alert' %>
+    <%= render partial: 'shared/navbar' %>
+    <%= render partial: 'shared/alert' %>
     <main class="container mx-auto mt-10 px-5">
 
       <%= yield %>
     </main>
 
-    <%= render partial: 'layouts/footer' %>
+    <%= render partial: 'shared/footer' %>
   </body>
 </html>

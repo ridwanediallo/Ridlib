@@ -1,0 +1,18 @@
+<header class="text-gray-600 body-font bg-gray-200 border-4 border-b-blue-600">
+<div class="container mx-auto flex flex-col p-5 md:flex-row justify-between">
+    <%= render 'shared/logo' %>
+
+    <nav class="hidden md:block md:ml-auto text-gray-700 text-md font-bold">
+        <ul class="flex items-center justify-between">
+           <% if user_signed_in? %>
+               <li><%= link_to current_user.name, edit_user_registration_path, class:"mr-5 hover:text-gray-900" %></li>
+               <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"mr-5 hover:text-gray-900" %></li>
+           <% else %>
+               <li><%= link_to "Sign In", new_user_session_path, class:"mr-5 hover:text-gray-900" %></li>
+               <li><%= link_to "Sign up", new_user_registration_path, class:"mr-5 hover:text-gray-900"%></li>
+           <% end %>
+        </ul>
+    </nav>
+
+  </div>
+</header>

@@ -4,13 +4,14 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
 
   def index
-    @books = Book.all
+    @books = Book.al
   end
 
 
   def show
      @book_comment = Comment.includes(:book, :user).all
      @comment = Comment.new
+
       # Fetch the book from the API
       gutenburg_book_id = params[:id]
 
@@ -24,12 +25,15 @@ class BooksController < ApplicationController
        @book = Book.new(
                   book_id: @gutenburg_book["id"],
                   title: @gutenburg_book["title"],
-                  # author_name: @gutenburg_book["authors"][0]['name'],
+                  author_name: @gutenburg_book["authors"][0]['name'],
                   subject: @gutenburg_book["subjects"][0],
                   image_url: @gutenburg_book["formats"]["image/jpeg"],
                   download_count: @gutenburg_book["download_count"] )
     end
     @book.save!
+
+    @user_rating = current_user.ratings.find_by(book: @book)
+    @ratings = Rating.where(book_id: @book.id).pluck(:rating)
   end
 
     def create_comment
@@ -66,12 +70,11 @@ class BooksController < ApplicationController
   end
 
   def create
-
     @book = Book.new(book_params)
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to author_books_path, notice: "Book was successfully created." }
+        format.html { redirect_to books_path, notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -120,4 +123,9 @@ class BooksController < ApplicationController
     def comment_params
       params.require(:comment).permit(:comment, :user_id, :book_id)
     end
+
+    def rate_params
+      params.require(:rating).permit(:book_id)
+    end
+
 end

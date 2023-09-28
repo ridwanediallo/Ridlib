@@ -33,3 +33,18 @@ document.addEventListener('turbo:load', () => {
    }
  });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const ratingForms = document.querySelectorAll('.rating-form');
+  const currentRating = document.getElementById('current-rating');
+
+  ratingForms.forEach((form) => {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const rating = parseInt(form.getAttribute('data-rating'), 10);
+      currentRating.textContent = rating;
+    });
+  });
+});
