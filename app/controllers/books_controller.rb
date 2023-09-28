@@ -49,7 +49,7 @@ class BooksController < ApplicationController
 
        respond_to do |format|
          if @comment.save
-           format.html { redirect_to book_url(@comment.book), notice: "Comment was successfully created." }
+           format.html { redirect_to book_url(@comment.book.book_id), notice: "Comment was successfully created." }
            format.json { render :show, status: :created, location: @comment }
          else
            format.html { render :show, status: :unprocessable_entity }
