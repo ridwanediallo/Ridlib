@@ -62,13 +62,6 @@ class BooksController < ApplicationController
        end
   end
 
-  # def calculate_rating_sum(book)
-  #   ratings = Rating.where(book_id: book.id).pluck(:rating)
-  #   return 0 if ratings.empty?
-
-  #   ratings.sum
-  # end
-
   def new
     @book = Book.new
   end
