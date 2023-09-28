@@ -2,7 +2,9 @@
   <div class="flex items-center">
     <% if user_rating %>
       <% rating = user_rating.rating %>
-      <p class="pr-4">Your rating: <%= pluralize(rating, 'star') %></p>
+      <div class="flex">
+          <p class="pr-4">Your rating: <%= pluralize(rating, 'star') %></p>
+      </div>
     <% else %>
       <p>No rating yet.</p>
     <% end %>
@@ -16,6 +18,8 @@
         <% end %>
       <% end %>
     <% end %>
+
+     <p class="ml-4">(<%= ratings.empty? ? 0 : pluralize(ratings.sum, 'review') %>)</p>
   </div>
 </div>
 
