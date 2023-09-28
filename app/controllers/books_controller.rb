@@ -25,7 +25,7 @@ class BooksController < ApplicationController
        @book = Book.new(
                   book_id: @gutenburg_book["id"],
                   title: @gutenburg_book["title"],
-                  # author_name: @gutenburg_book["authors"][0]['name'],
+                  author_name: @gutenburg_book["authors"][0]['name'],
                   subject: @gutenburg_book["subjects"][0],
                   image_url: @gutenburg_book["formats"]["image/jpeg"],
                   download_count: @gutenburg_book["download_count"] )
@@ -33,6 +33,7 @@ class BooksController < ApplicationController
     @book.save!
 
     @user_rating = current_user.ratings.find_by(book: @book)
+    @ratings = Rating.where(book_id: @book.id).pluck(:rating)
   end
 
     def create_comment
@@ -61,6 +62,13 @@ class BooksController < ApplicationController
        end
   end
 
+  # def calculate_rating_sum(book)
+  #   ratings = Rating.where(book_id: book.id).pluck(:rating)
+  #   return 0 if ratings.empty?
+
+  #   ratings.sum
+  # end
+
   def new
     @book = Book.new
   end
@@ -69,7 +77,6 @@ class BooksController < ApplicationController
   end
 
   def create
-
     @book = Book.new(book_params)
 
     respond_to do |format|
