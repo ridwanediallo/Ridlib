@@ -22,13 +22,7 @@
                             </h1>
 
                             <div class="hidden lg:flex items-center">
-                                <form action="<%= search_books_path %>" method="get" class="flex items-center space-x-3">
-                                  <input type="text" name="q" placeholder="Search for books" class="text-sm dark:bg-gray-900 text-gray-600 placeholder-gray-400 dark:placeholder-gray-300 focus:outline-none" />
-                                  <button type="submit" aria-label="search items" class="w-5 text-gray-800 dark:hover:text-gray-300 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800">
-                                    <img class="transform rotate-90 dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg2.svg" alt="search">
-                                    <img class="transform rotate-90 dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg2dark.svg" alt="search">
-                                  </button>
-                                </form>
+                               <%= render 'shared/search_input' %>
                             </div>
 
                             <div class="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
@@ -68,21 +62,14 @@
                     <!-- For small screen -->
                     <div id="mobile-menu" class="hidden absolute dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex flex-col pb-24 w-full">
                         <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
-                            <div class="flex items-center space-x-3">
-                                <div>
-                                    <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg2.svg" alt="search">
-                                    <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg2dark.svg" alt="search">
-                                </div>
-                                <input type="text" placeholder="Search for products" class="text-sm dark:bg-gray-900 text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 focus:outline-none" />
-                            </div>
-
+                          <%= render 'shared/search_input' %>
                             <button onclick="closeMenu()" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
                                 <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg6.svg" alt="cross">
                                 <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg6dark.svg" alt="cross">
                             </button>
                         </div>
                         <div class="mt-6 p-4">
-                            <ul class="flex flex-col space-y-6 pb-24 bg-gray-400 px-10 pt-4 rounded">
+                            <ul class="flex flex-col space-y-6 pb-24 bg-blue-600 text-white px-10 pt-4 rounded">
                                 <% if user_signed_in? %>
                                       <li>
                                           <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">
