@@ -1,6 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  static targets = ['menu'];
+
   connect() {
     setTimeout(() => {
       this.dismiss();
@@ -9,6 +11,14 @@ export default class extends Controller {
 
   dismiss() {
     this.element.remove();
+  }
+
+  open() {
+    this.menuTarget.classList.remove('hidden');
+  }
+
+  close() {
+    this.menuTarget.classList.add('hidden');
   }
 
 }
