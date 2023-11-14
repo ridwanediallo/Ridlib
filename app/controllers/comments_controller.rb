@@ -35,6 +35,18 @@ class CommentsController < ApplicationController
        end
   end
 
+  def update
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully updated." }
+        format.json { render :show, status: :ok, location: @comment }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @comment.destroy
 
