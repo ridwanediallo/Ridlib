@@ -1,17 +1,11 @@
 <div data-controller="dropdown" class="ml-3 absolute top-0 right-0 w-4 h-4 mr-4 mt-4">
-    <button data-action="dropdown#toggleDropdown" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+    <button data-action="dropdown#toggleDropdown" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
         <%= image_tag ("ellipsis.png") %>
     </button>
 
-  <div data-dropdown-target="dropdown" class="   hidden    origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-    <a href="" class="hover:bg-gray-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">
-      Edit
-    </a>
-
-    <a href="" class="hover:bg-gray-300 block px-4 py-2 text-sm text-gray-00" role="menuitem" tabindex="-1" id="user-menu-item-2">
-      Delete
-    </a>
+  <div data-dropdown-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+    <%= link_to 'Edit', edit_book_comment_path(book.book_id, comment.id), data: { turbo_frame: 'modal' }, class: "hover:bg-gray-300 block px-4 py-2 text-sm text-gray-700" %>
+    <%= button_to 'Delete', book_comment_path(book.book_id, comment.id), method: :delete, class: "hover:bg-gray-300 block px-4 py-2 text-sm text-gray-700" %>
   </div>
 </div>
 
-<!--  -->
