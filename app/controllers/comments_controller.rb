@@ -5,10 +5,13 @@ class CommentsController < ApplicationController
     @comments = Comment.includes(:book, :user).all
   end
 
+  def show
+    @comment = Comment.includes(:book, :user).find(params[:id])
+  end
 
   def new
     @book = Book.find_by(book_id: params[:book_id])
-    @comment = Comment.new
+    @comment = Comment.new(book: @book)
   end
 
   def create
@@ -38,7 +41,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully updated." }
+        format.html { redirect_to book_url(@comment.book.book_id), notice: "Comment was successfully updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +54,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Comment was successfully destroyed." }
+      format.html { redirect_to book_url(@comment.book.book_id), notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
