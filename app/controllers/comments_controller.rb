@@ -9,6 +9,11 @@ class CommentsController < ApplicationController
     @comment = Comment.includes(:book, :user).find(params[:id])
   end
 
+  def edit
+    @book = Book.find_by(book_id: params[:book_id])
+    render locals: { book: @book }
+  end
+  
   def new
     @book = Book.find_by(book_id: params[:book_id])
     @comment = Comment.new(book: @book)
