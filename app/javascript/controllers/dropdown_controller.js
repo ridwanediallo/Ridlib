@@ -1,23 +1,15 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ['menu', 'dropdown'];
+  static targets = ['dropdown'];
 
-  connect() {
-    document.body.addEventListener('click', this.closeDropdown.bind(this));
-  }
+  toggleDropdown(event) {
+    event.stopPropagation();
 
-  disconnect() {
-    document.body.removeEventListener('click', this.closeDropdown.bind(this));
-  }
-
-  toggleDropdown() {
     this.dropdownTarget.classList.toggle('hidden');
   }
 
-  closeDropdown(event) {
-    if (!this.menuTarget.contains(event.target)) {
-      this.dropdownTarget.classList.add('hidden');
-    }
-  }
+  closeDropdown() {
+    this.dropdownTarget.classList.add('hidden');
+   }
 }
