@@ -80,3 +80,5 @@ gem 'rest-client', '~> 2.1'
 gem 'faraday', '~> 2.7', '>= 2.7.4'
 
 gem "inline_svg"
+
+gem 'cancancan', '~> 3.5'
