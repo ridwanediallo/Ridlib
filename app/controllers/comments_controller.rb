@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   before_action :set_comment, only: %i[ show edit update destroy ]
 
   def index
@@ -13,7 +15,7 @@ class CommentsController < ApplicationController
     @book = Book.find_by(book_id: params[:book_id])
     render locals: { book: @book }
   end
-  
+
   def new
     @book = Book.find_by(book_id: params[:book_id])
     @comment = Comment.new(book: @book)
