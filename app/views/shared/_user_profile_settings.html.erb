@@ -1,0 +1,16 @@
+<div data-controller="dropdown" class="ml-3 absolute top-0 right-0 w-4 h-4 mr-20 mt-4">
+    <button data-action="dropdown#toggleDropdown click@window->dropdown#close" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+        <%= image_tag ("default_profile.png") %>
+    </button>
+
+  <div data-dropdown-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+    <ul>
+     <li>
+        <%= link_to current_user.name, edit_user_registration_path, class: "rounded hover:bg-gray-300 hover:text-white block px-4 py-2 text-sm text-gray-700" %>
+     </li>
+     <li>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "rounded hover:bg-gray-300 hover:text-white block px-4 py-2 text-sm text-gray-700" %>
+      </li>
+    </ul>
+  </div>
+</div>

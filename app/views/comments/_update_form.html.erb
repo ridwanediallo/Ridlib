@@ -1,0 +1,17 @@
+
+<div class="modal">
+<%= form_for(@comment , url: book_comment_path(@comment.id)) do |f| %>
+<div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+  <%= f.hidden_field :comment_id, value: @comment.id %> <%= f.text_area :comment, class: "w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" ,placeholder: "Enter your comment here..." %>
+</div>
+<div
+  class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600"
+>
+  <%= f.submit "Update Comment", class: "flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded" %>
+   <button class='flex ml-auto text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-500 rounded'>
+     <%= link_to "close", book_path(book.book_id) %>
+   </button>
+</div>
+<% end %>
+
+</div>

@@ -216,7 +216,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.2.1)
+    stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.24-x86_64-linux)
       railties (>= 6.0.0)
@@ -269,7 +269,7 @@ DEPENDENCIES
   rest-client (~> 2.1)
   selenium-webdriver
   sprockets-rails
-  stimulus-rails
+  stimulus-rails (~> 1.2, >= 1.2.2)
   tailwindcss-rails
   turbo-rails
   tzinfo-data

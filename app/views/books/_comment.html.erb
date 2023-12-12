@@ -18,7 +18,7 @@
        <div class="container flex">
          <%= image_tag ("default_profile.png"), class: 'w-8 h-8 mt-4 mr-2' %>
           <div class="mb-4 border rounded p-4 w-full relative">
-            <%= image_tag ("ellipsis.png"), class: 'absolute w-4 h-4 mr-2 top-0 right-0 cursor-pointer' %>
+            <%= render 'shared/dropdown'%>
             <div class="flex item-center gap-4 mb-4">
                <strong class="leading-relaxed italic"><%= comment.user.name %></strong>
                <p><%= comment.created_at.to_fs(:short) %></p>
