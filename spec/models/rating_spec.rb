@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
+RSpec.describe Rating, type: :model do
   let(:user) {
-    User.create(name: 'Ridwan', email: 'ridwane@gmail.com', password: '123456', password_confirmation: '123456')
+    User.create(name: 'Ridwan', email: 'ridwanediallo99@gmail.com', password: '123456', password_confirmation: '123456')
   }
 
   let(:book) {
@@ -26,6 +26,7 @@ RSpec.describe Comment, type: :model do
       rating: 5
     )
   }
+
 
   it "Raiting should be present" do
     expect(subject).to be_valid
