@@ -8,7 +8,7 @@
     <% end %>
 
     <% (1..5).each do |rate| %>
-      <%= button_to "/rates", method: :post, remote: true, params: { rating: { book_id: @book.id, rating: rate } }, form: { "data-turbo" => false } do %>
+      <%= button_to "/rating", method: :post, remote: true, params: { rating: { book_id: @book.id, rating: rate } }, form: { "data-turbo" => false } do %>
         <% if user_rating && rate <= rating %>
               <%= inline_svg_tag("star.svg", alt: "#{rate} star", class: "w-8 h-8 fill-yellow-400 stroke-yellow-400") %>
         <% else %>
@@ -17,7 +17,7 @@
       <% end %>
     <% end %>
 
-     <p class="ml-4">(<%= ratings.empty? ? 0 : pluralize(ratings.sum, 'review') %>)</p>
+     <p class="ml-4">(<%= ratings&.empty? ? 0 : pluralize(ratings&.sum, 'review') %>)</p>
   </div>
 </div>
 
