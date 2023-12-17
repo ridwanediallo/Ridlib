@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:create, :destroy]
-  resources :rates, only: [:create]
+  resources :rating, only: [:create]
 
 
 
