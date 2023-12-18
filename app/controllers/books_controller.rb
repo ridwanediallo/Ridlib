@@ -36,32 +36,6 @@ class BooksController < ApplicationController
     @ratings = Rating.where(book_id: @book.id).pluck(:rating)
   end
 
-    def create_comment
-       @comment = Comment.new(comment_params)
-       @comment.user = current_user
-
-       # Fetch the book from the database based on book_id
-       @book = Book.find_by(book_id: params[:id])
-
-       @comment.book = @book
-
-      if @comment.book.nil?
-        flash[:error] = "Book not found."
-        redirect_to root_url
-        return
-      end
-
-       respond_to do |format|
-         if @comment.save
-           format.html { redirect_to book_url(@comment.book.book_id), notice: "Comment was successfully created." }
-           format.json { render :show, status: :created, location: @comment }
-         else
-           format.html { render :show, status: :unprocessable_entity }
-           format.json { render json: @comment.errors, status: :unprocessable_entity }
-         end
-       end
-  end
-
   def new
     @book = Book.new
   end
