@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
        # Fetch the book from the database based on book_id
        @comment.book = Book.find_by(book_id: params[:book_id])
 
+
       if @comment.book.nil?
         flash[:error] = "Book not found."
         redirect_to root_url
@@ -36,7 +37,7 @@ class CommentsController < ApplicationController
 
        respond_to do |format|
          if @comment.save
-           format.html { redirect_to book_url(@comment.book), notice: "Comment was successfully created." }
+           format.html { redirect_to book_url(@comment.book.book_id), notice: "Comment was successfully created." }
            format.json { render :show, status: :created, location: @comment }
          else
            format.html { render :new, status: :unprocessable_entity }
