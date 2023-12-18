@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
 
-
   resources :books do
-    member do
-      post :create_comment
-      # post 'ratings', to: 'books#rate'
-    end
     resources :comments
   end
 
   resources :likes, only: [:create, :destroy]
   resources :rating, only: [:create]
-
-
 
   devise_for :users, controllers: {
     registrations: 'registrations'
