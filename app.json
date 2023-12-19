@@ -1,0 +1,9 @@
+{
+  "name": "Book review",
+  "description": "Bring happiness to it’s users",
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rake db:migrate"
+    }
+  }
+}
