@@ -1,6 +1,6 @@
 {
   "name": "Book review",
-  "description": "Bring happiness to it’s users",
+  "description": "Book review allows you to find your favorite books among more than 70,000+ books, live a comment a like and a rate.",
   "scripts": {
     "dokku": {
       "postdeploy": "bundle exec rake db:migrate"
