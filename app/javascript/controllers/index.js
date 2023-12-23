@@ -1,9 +1,9 @@
 // Import and register all your controllers from the importmap under controllers/*
 
-import { application } from "./application"
+import { application } from "controllers/application"
 
-import FlashCcontroller from "./flash_controller"
+import FlashCcontroller from "controllers/flash_controller"
 application.register('flash', FlashCcontroller)
 
-import DropdownCcontroller from "./dropdown_controller";
+import DropdownCcontroller from "controllers/dropdown_controller";
 application.register('dropdown', DropdownCcontroller)
