@@ -15,7 +15,7 @@
 
 
       <% @book.comments.each do |comment| %>
-       <div class="container flex">
+       <div class="container flex mb-2">
          <%= image_tag ("default_profile.png"), class: 'w-8 h-8 mt-4 mr-2' %>
           <div class="mb-4 border rounded p-4 w-full relative">
             <%= render 'shared/dropdown', book: @book, comment: comment %>
