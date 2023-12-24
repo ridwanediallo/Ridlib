@@ -1,16 +1,22 @@
 <% if can?(:update, comment) || can?(:destroy, comment) %>
-<div data-controller="dropdown" class="ml-3 absolute top-0 right-0 w-4 h-4 mr-4 mt-4">
+<div data-controller="dropdown" class="ml-3 absolute top-0 right-0 w-4 h-4 mr-4 mt-4 mb-2">
   <button data-action="dropdown#toggleDropdown click@window->dropdown#closeDropdown" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600" aria-expanded="false" aria-haspopup="true">
     <%= image_tag ("ellipsis.png") %>
   </button>
   <div data-dropdown-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-menu-button" tabindex="-1">
 
     <% if can? :update, comment %>
-       <%= link_to 'Edit', edit_book_comment_path(book.book_id, comment.id), data: { turbo_frame: 'modal' }, class: "rounded hover:bg-blue-600 hover:text-white block px-4 py-2 text-sm text-gray-700" %>
+       <div class="flex items-center rounded cursor-pointer hover:bg-blue-600 text-blue-600 hover:text-white px-4 py-2 text-sm">
+          <%= image_tag ("edit-icon.png"), class: "w-4 h-4 mr-2" %>
+          <%= link_to 'Edit', edit_book_comment_path(book.book_id, comment.id), data: { turbo_frame: 'modal' } %>
+       </div>
     <% end %>
 
     <% if can? :destroy, comment %>
-       <%= button_to 'Delete', book_comment_path(book.book_id, comment.id), method: :delete, class: "w-full text-left rounded hover:bg-red-600 hover:text-white block px-4 py-2 text-sm text-gray-700" %>
+       <div class="flex items-center w-full text-left cursor-pointer rounded hover:bg-red-600 transition  text-red-600 hover:text-white px-4 py-2 text-sm">
+         <%= image_tag ("delete-icon.png"), class: "w-4 h-4 mr-2" %>
+         <%= button_to 'Delete', book_comment_path(book.book_id, comment.id), method: :delete, data: { turbo_frame: 'modal' } %>
+       </div>
     <% end %>
 
   </div>
