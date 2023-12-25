@@ -1,119 +1,40 @@
 <nav class="static top-0 w-full">
-        <div class="dark:bg-gray-900">
-            <div>
-                <div class="relative">
-                    <!-- For md screen size -->
-                    <div id="md-searchbar" class="bg-white dark:bg-gray-900 hidden lg:hidden py-5 px-6 items-center justify-between">
-                        <div class="flex items-center space-x-3 text-gray-800 dark:text-white">
-                            <div>
-                               <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg2.svg" alt="search">
-                               <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg2dark.svg" alt="search">
-                            </div>
-                            <input type="text" placeholder="Search for products" class="text-sm leading-none dark:text-gray-300 dark:bg-gray-900 text-gray-600 focus:outline-none" />
-                        </div>
+    <div class="relative" data-controller="menu">
+        <!-- For large screens -->
+        <div class="px-6 py-6 bg-blue-600 text-white">
+            <div class="container mx-auto flex items-center justify-between">
+                 <%= render partial: 'shared/logo' %>
+
+                <div class="hidden md:flex items-center">
+                    <%= render 'shared/search_input' %>
+                </div>
+
+                <div class="justify-end flex items-center space-x-4 xl:space-x-8">
+                    <div class="hidden md:flex items-center justify-center space-x-8">
+                        <%= render 'shared/nav_links' %>
                     </div>
-                    <!-- For md screen size -->
 
-                    <!-- For large screens -->
-                    <div class="dark:bg-gray-900 px-6 py-6 bg-blue-600 text-white">
-                        <div class="container mx-auto flex items-center justify-between">
-                            <h1 class="md:w-2/12 cursor-pointer text-gray-800 dark:text-white" aria-label="the Crib.">
-                               <%= render partial: 'shared/logo' %>
-                            </h1>
-
-                            <div class="hidden lg:flex items-center">
-                               <%= render 'shared/search_input' %>
-                            </div>
-
-                            <div class="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
-                                <ul class="hidden w-8/12 md:flex items-center justify-center space-x-8">
-                                     <% if user_signed_in? %>
-                                          <li>
-                                              <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"><%= link_to current_user.name, edit_user_registration_path %></a>
-                                         </li>
-                                         <li>
-                                             <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></a>
-                                         </li>
-                                     <% else %>
-                                          <li>
-                                              <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"><%= link_to "Sign In", new_user_session_path %></a>
-                                         </li>
-                                         <li>
-                                              <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"><%= link_to "Sign up", new_user_registration_path%></a>
-                                         </li>
-                                     <% end %>
-                                </ul>
-
-
-                                <div class="flex md:hidden">
-                                    <button aria-label="show options" onclick="mdOptionsToggle()" class="text-black dark:text-white dark:hover:text-gray-300 hidden md:flex focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
-                                        <img class=" dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg5.svg" alt="toggler">
-                                        <img class=" dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg5dark.svg" alt="toggler">
-                                    </button>
-
-                                    <button aria-label="open menu" onclick="openMenu()" class="text-black dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
-                                        <img class=" dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg5.svg" alt="toggler">
-                                        <img class=" dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg5dark.svg" alt="toggler">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- For small screen -->
-                    <div id="mobile-menu" class="hidden absolute dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex flex-col pb-24 w-full">
-                        <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
-                          <%= render 'shared/search_input' %>
-                            <button onclick="closeMenu()" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
-                                <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg6.svg" alt="cross">
-                                <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg6dark.svg" alt="cross">
-                            </button>
-                        </div>
-                        <div class="mt-6 p-4">
-                            <ul class="flex flex-col space-y-6 pb-24 bg-blue-600 text-white px-10 pt-4 rounded">
-                                <% if user_signed_in? %>
-                                      <li>
-                                          <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">
-                                            <%= link_to current_user.name, edit_user_registration_path %>
-                                          </a>
-                                     </li>
-                                      <li>
-                                          <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">
-                                            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-                                          </a>
-                                     </li>
-                                     <% else %>
-                                      <li>
-                                          <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">
-                                            <%= link_to "Sign In", new_user_session_path %>
-                                          </a>
-                                     </li>
-                                      <li>
-                                          <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">
-                                            <%= link_to "Sign up", new_user_registration_path%>
-                                          </a>
-                                     </li>
-                                 <% end %>
-                            </ul>
-                        </div>
+                    <div class="flex md:hidden">
+                        <button aria-label="open menu" data-action="menu#openMenu" class="text-black dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
+                            <img class=" dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg5.svg" alt="toggler">
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- For small screen -->
+        <div data-menu-target="menu" id="mobile-menu" class="hidden absolute dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex-col pb-24 w-full">
+            <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
+                <%= render 'shared/search_input' %>
+                <button data-action="menu#closeMenu" aria-label="close menu">
+                    <%= image_tag ("close-icon.png"), class: "w-4 h-4", alt: "close" %>
+                </button>
+            </div>
+            <div class="mt-6 p-4">
+                <div class="flex flex-col space-y-6 pb-24 bg-blue-600 text-white px-10 pt-4 rounded">
+                    <%= render 'shared/nav_links' %>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
-
-<script>
-    const toggleSearch = () => {
-       document.getElementById("searchInput").classList.toggle("hidden");
-    };
-   const mdOptionsToggle = () => {
-       document.getElementById("md-searchbar").classList.toggle("hidden");
-       document.getElementById("md-searchbar").classList.toggle("flex");
-   };
-   const openMenu = () => {
-    document.getElementById("mobile-menu").classList.remove("hidden");
-   };
-   const closeMenu = () => {
-     document.getElementById("mobile-menu").classList.add("hidden");
-   };
-
-</script>
