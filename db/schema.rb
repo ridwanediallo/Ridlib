@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_02_231256) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_27_235720) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_02_231256) do
     t.integer "download_count"
     t.string "author_name"
     t.integer "book_id"
+    t.string "format"
   end
 
   create_table "comments", force: :cascade do |t|

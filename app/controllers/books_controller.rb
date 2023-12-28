@@ -27,6 +27,7 @@ class BooksController < ApplicationController
                   title: @gutenburg_book["title"],
                   author_name: @gutenburg_book["authors"][0]['name'],
                   subject: @gutenburg_book["subjects"][0],
+                  format: @gutenburg_book["formats"]["text/html"],
                   image_url: @gutenburg_book["formats"]["image/jpeg"],
                   download_count: @gutenburg_book["download_count"] )
     end
