@@ -1,5 +1,5 @@
 <div class="flex mb-4">
-  <div class="flex items-center">
+  <div class="flex items-center flex-wrap">
 
     <% average_rating = ratings&.any? ? ratings&.sum.to_f / ratings&.count : 0 %>
 
@@ -12,12 +12,10 @@
         <% end %>
       <% end %>
     <% end %>
-
-    <div class="flex items-center">
-       <p class="ml-4 font-bold text-3xl"> <%= average_rating %></p>
-       <p class="ml-4"><%= ratings&.empty? ? 0 : pluralize(ratings&.sum, 'rating') %></p>
-       <p class="ml-4"><%= ratings&.empty? ? 0 : pluralize(ratings&.count, 'review') %></p>
-    </div>
+    <p class="ml-4 font-bold text-3xl"><%= average_rating %></p>
+    <p class="ml-4 "><%= ratings&.empty? ? 0 : pluralize(ratings&.sum, 'rating') %></p>
+    <p class="ml-4"><%= ratings&.empty? ? 0 : pluralize(ratings&.count, 'review') %></p>
+    
   </div>
 </div>
 
