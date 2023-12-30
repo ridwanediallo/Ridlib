@@ -1,7 +1,5 @@
 <% if flash[:notice] %>
-<div class="flex justify-center item-center fixed top-24 right-48">
-<div data-controller="flash" role="alert" class="rounded-xl border border-gray-100 p-4 shadow-xl">
-  <div class="flex items-center gap-4">
+  <div data-controller="flash" role="alert" class="flex items-center gap-4 fixed my-4 mx-4 self-center rounded-xl border border-gray-100 p-4 shadow-xl">
     <span class="text-green-600">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -28,26 +26,21 @@
          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
   </div>
-</div>
-</div>
 <% end %>
 
 <% if flash[:alert] %>
-<div class="flex justify-center item-center fixed top-24 right-48">
-<div data-controller="flash" role="alert" class="flash_msg w-96 rounded-xl border border-gray-100 p-4 shadow-xl">
-  <div class="flex item-center gap-4">
-      <span class="text-red-600 material-symbols-outlined">cancel</span>
+  <div data-controller="flash" role="alert" class="bg-white align-middle fixed my-4 mx-4 self-center rounded-xl border border-gray-100 p-2 shadow-xl">
 
-    <div class="flex item-center">
+    <div class="flex item-center relative ">
+      <span class="text-red-600 material-symbols-outlined">cancel</span>
       <strong class="font-bold mr-3">Error.</strong>
       <p class="mt-1 text-sm tracking-wide text-gray-700"> <%= alert %> 🤦‍♂️</p>
-    </div>
 
-    <button data-action="flash#dismiss" type="button" class="text-gray-500 transition hover:text-gray-600 self-end">
-         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    </button>
+
+        <button data-action="flash#dismiss" type="button" class="absolute top-0 right-0 text-gray-500 transition hover:text-gray-600 self-end px-4">
+             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+     </div>
   </div>
-</div>
-</div>
 <% end %>
 
