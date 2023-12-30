@@ -18,7 +18,6 @@
     </span>
 
     <div class="flex item-center">
-      <strong class="font-bold mr-3">Success.</strong>
       <p class="mt-1 text-sm tracking-wide text-gray-700"> <%= notice %> 🎉</p>
     </div>
 
@@ -29,11 +28,10 @@
 <% end %>
 
 <% if flash[:alert] %>
-  <div data-controller="flash" role="alert" class="bg-white align-middle fixed my-4 mx-4 self-center rounded-xl border border-gray-100 p-2 shadow-xl">
+  <div data-controller="flash" role="alert" class="bg-white fixed my-4 mx-4 self-center rounded-xl border border-gray-100 p-2 shadow-xl">
 
-    <div class="flex item-center relative ">
-      <span class="text-red-600 material-symbols-outlined">cancel</span>
-      <strong class="font-bold mr-3">Error.</strong>
+    <div class="flex item-center relative gap-2">
+      <%= image_tag ("error-icon.png"), class: "w-6 h-6", alt: "error" %>
       <p class="mt-1 text-sm tracking-wide text-gray-700"> <%= alert %> 🤦‍♂️</p>
 
 
