@@ -12,7 +12,7 @@ class RatesController < ApplicationController
 
     respond_to do |format|
       if @rate.save
-        format.html { redirect_to book_url(@rate.book.book_id), notice: "Rate was successfully created." }
+        format.html { redirect_to book_url(@rate.book.book_id), notice: "Thank you for your rating 🎉." }
         format.json { render :show, status: :created, location: @rate }
         format.js
       else
