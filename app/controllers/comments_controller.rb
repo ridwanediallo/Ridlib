@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     @book = Book.find_by(book_id: params[:book_id])
     render locals: { book: @book }
   end
-  
+
   def new
     @book = Book.find_by(book_id: params[:book_id])
     @comment = Comment.new(book: @book)
@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to book_url(@comment.book.book_id), notice: "Comment was successfully updated." }
+        format.html { redirect_to book_url(@comment.book.book_id), notice: "The update has been saved 🎉." }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
