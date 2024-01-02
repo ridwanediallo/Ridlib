@@ -13,7 +13,7 @@ class LikesController < ApplicationController
   def destroy
     @like = current_user.likes.find(params[:id])
     @like.destroy
-    redirect_to book_url(@like.book.book_id), notice: "Oh! You don't like this book."
+    redirect_to book_url(@like.book.book_id), notice: "Oh! You don't like this book.🤦‍♂️"
   end
 
   private
