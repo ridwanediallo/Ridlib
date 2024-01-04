@@ -1,19 +1,13 @@
-<div class="hidden md:flex items-center relative text-left" data-controller="menu">
-  <button data-action="menu#toggleDropdown" type="button" id="topicDropdown" class="px-4 py-2 font-bold text-white">
-    Browse by Topic
-  </button>
-  <img class="w-4 h-4 text-white" src="https://img.icons8.com/ios-filled/50/expand-arrow--v1.png" alt="expand-arrow--v1"/>
-
-  <div data-menu-target="dropdown" class="hidden absolute right-0 mt-2 w-40 bg-blue-600 rounded-md shadow-lg">
-    <form action="<%= root_path %>" method="get">
-      <select name="topic" class="block w-full p-2 bg-blue-600 text-white">
-        <option value="children">Children's Literature</option>
-        <option value="fiction">Fiction books</option>
-        <option value="drama">Drama</option>
-      </select>
-      <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
-        Apply
-      </button>
-    </form>
+<div data-controller="menu" class="ml-3 relative hidden md:block">
+    <div class="flex items-center">
+    <p>Browse</p>
+    <button data-action="menu#toggleDropdown click@window->menu#closeDropdown" type="button" id="topicDropdown" class="px-4 py-2 font-bold text-white">
+      <span class="w-4 h-4">▾</span>
+     </button>
+  </div>
+  <div data-menu-target="dropdown" class="   hidden    origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+     <%= link_to "Children", "#{root_path}?topic=children", class: "rounded hover:bg-gray-300 hover:text-blue-600 block px-4 py-2 text-gray-700" %>
+      <%= link_to "Fiction", "#{root_path}?topic=fiction", class: "rounded hover:bg-gray-300 hover:text-blue-600 block px-4 py-2 text-gray-700" %>
+      <%= link_to "Drama", "#{root_path}?topic=drama", class: "rounded hover:bg-gray-300 hover:text-blue-600 block px-4 py-2 text-gray-700" %>
   </div>
 </div>
