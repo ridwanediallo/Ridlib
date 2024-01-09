@@ -1,5 +1,6 @@
+ <% invalid = @user.errors.include?(:email) %>
 <div class="flex items-center justify-center ">
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
 <div class="flex flex-col items-center justify-center bg-white rounded-lg overflow-hidden shadow-lg pb-20">
   <h3 class="bg-blue-600 py-5 text-white font-bold hover:bg-gray-400 w-full text-center">Edit <%= resource_name.to_s.humanize %></h3>
     <div class="my-4 px-10 mt-10">
@@ -16,28 +17,37 @@
     </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2">
-        Password
-      </label>
-      <div class="relative">
-         <%= f.password_field :password, id: "passowrd", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "confirm password" %>
-         <i id="visibilityBtn" class="material-symbols-outlined absolute inset-y-0 right-0 grid place-content-center px-4">visibility</i>
-      </div>
+      <div class="mb-6 px-10">
+       <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+       <div class="relative">
+         <%= f.password_field :password, id: "password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "password" %>
+         <span id="password_toggle" class="cursor-pointer material-symbols-outlined absolute inset-y-0 right-0 grid place-content-center px-4">visibility</span>
+       </div>
+      <% if invalid %>
+        <div class="text-red-600">
+            <% @user.errors.full_messages_for(:password).each do |error_message| %>
+              <%= error_message %>.
+            <% end %>
+        </div>
+       <% end %>
     </div>
 
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2">
-        Current passaword
-      </label>
+    <div class="mb-6 px-10">
+      <%= f.label :password_confirmation, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <div class="relative">
-         <%= f.password_field :password, id: "passowrd", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "confirm password" %>
-         <i id="visibilityBtn" class="material-symbols-outlined absolute inset-y-0 right-0 grid place-content-center px-4">visibility</i>
+        <%= f.password_field :password_confirmation, id: "password_confirmation", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "confirm password" %>
+        <span id="password_confirmation_toggle" class="cursor-pointer material-symbols-outlined absolute inset-y-0 right-0 grid place-content-center px-4">visibility</span>
       </div>
-
+      <% if invalid %>
+        <div class="text-red-600">
+            <% @user.errors.full_messages_for(:password).each do |error_message| %>
+              <%= error_message %>.
+            <% end %>
+        </div>
+      <% end %>
     </div>
 
     <div class="">
