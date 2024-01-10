@@ -14,8 +14,8 @@
           <span class="title-font font-medium text-2xl text-gray-900 mb-4">Downloaded:  <%= @book['download_count'] %></span>
           <div>
           <% if @book.format %>
-            <button class="mt-6 flex items-center gap-2 text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 hover:font-bold rounded">
-              <%= link_to 'Read Now', @book.format, target: '_blank', class: "" %>
+            <button class="mt-10 flex items-center gap-2 text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 hover:font-bold rounded">
+              <%= link_to 'Read online', @book.format, target: '_blank', class: "" %>
               <%= image_tag 'book-icon.png', class: "w-6 h-6", alt: 'book' %>
             </button>
           <% else %>
