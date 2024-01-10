@@ -3,19 +3,19 @@
         <!-- For large screens -->
         <div class="px-6 py-6 bg-blue-600 text-white">
             <div class="container mx-auto flex items-center justify-between">
-                 <%= render partial: 'shared/logo' %>
+                <%= render partial: 'shared/logo' %>
 
-                <div class="hidden md:flex items-center">
+                <div class="hidden md:flex items-center gap-4">
                     <%= render 'shared/search_input' %>
+                    <%= render 'shared/browse_by_topic' %>
                 </div>
 
                 <div class="justify-end flex items-center space-x-4 xl:space-x-8">
-                    <div class="hidden md:flex items-center justify-center space-x-8">
-                        <%= render 'shared/nav_links' %>
-                    </div>
-
+                   <div class="hidden md:block ">
+                       <%= render 'shared/nav_links' %>
+                   </div>
                     <div class="flex md:hidden">
-                        <button aria-label="open menu" data-action="menu#openMenu" class="text-black dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
+                        <button  aria-label="open menu" data-action="menu#openMenu" class="text-black dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
                             <img class=" dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg5.svg" alt="toggler">
                         </button>
                     </div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <!-- For small screen -->
-        <div data-menu-target="menu" id="mobile-menu" class="hidden absolute dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex-col pb-24 w-full">
+        <div data-menu-target="menu" class="hidden absolute dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex-col pb-24 w-full">
             <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
                 <%= render 'shared/search_input' %>
                 <button data-action="menu#closeMenu" aria-label="close menu">
