@@ -1,16 +1,18 @@
-<div data-controller="dropdown" class="ml-3 absolute top-0 right-0 w-4 h-4 mr-20 mt-4">
-    <button data-action="dropdown#toggleDropdown click@window->dropdown#close" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-        <%= image_tag ("default_profile.png") %>
+<div data-controller="menu" class="ml-3 relative hidden md:block">
+    <button data-action="menu#toggleDropdown click@window->menu#closeDropdown" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+      <span class="sr-only">Open user menu</span>
+      <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
     </button>
+  <div data-menu-target="dropdown" class="   hidden    origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+    <div class="px-2 flex items-center">
+      <img class="h-8 w-8 rounded-full" src="https://www.gravatar.com/avatar/d14ff111e9f04bfeff99ea940d237573?d=mp" alt="">
+      <div class="block px-4 py-2 text-gray-700">
+        <h3 class="font-bold"><%= current_user&.name %></h3>
+        <p><%= current_user&.email %></p>
+      </div>
+    </div>
+    <%= link_to current_user&.name, edit_user_registration_path, class: "rounded hover:bg-gray-300 hover:text-blue-600 block px-4 py-2 text-gray-700" %>
 
-  <div data-dropdown-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-    <ul>
-     <li>
-        <%= link_to current_user.name, edit_user_registration_path, class: "rounded hover:bg-gray-300 hover:text-white block px-4 py-2 text-sm text-gray-700" %>
-     </li>
-     <li>
-        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "rounded hover:bg-gray-300 hover:text-white block px-4 py-2 text-sm text-gray-700" %>
-      </li>
-    </ul>
+     <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "rounded hover:bg-gray-300 hover:text-blue-600 block px-4 py-2 text-gray-700" %>
   </div>
 </div>
