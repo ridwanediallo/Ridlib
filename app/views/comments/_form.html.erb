@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal border-gray-200">
 <%= form_for(@comment, url: create_comment_book_path(@book.book_id)) do |f| %>
 <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
   <%= f.hidden_field :book_id, value: @book.book_id %>
@@ -7,9 +7,9 @@
 <div
   class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 bg-gray-400"
 >
-  <%= f.submit "Add Comment", class: "flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded" %>
+  <%= f.submit "Ok", class: "flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded" %>
   <button type="button">
-    <%= link_to "close", book_path(@book.book_id), class: "flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-500 rounded" %>
+    <%= link_to "cancel", book_path(@book.book_id), class: "flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-500 rounded" %>
   </button>
 </div>
 <% end %>
