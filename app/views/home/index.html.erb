@@ -5,9 +5,9 @@
         <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
           <a class="block h-48 rounded overflow-hidden" href="books/<%= book['id'] %>">
             <% if book['formats']['image/jpeg'] %>
-              <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block" src="<%= book['formats']['image/jpeg'] %>">
+              <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block transition duration-300 ease-in-out hover:scale-110" src="<%= book['formats']['image/jpeg'] %>">
             <% else %>
-              <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block" src="https://via.placeholder.com/150">
+              <img alt="<%= book['title'] %>" class="object-cover object-center w-full h-full block transition duration-300 ease-in-out hover:scale-110" src="https://via.placeholder.com/150">
             <% end %>
           </a>
           <div class="mt-4">
