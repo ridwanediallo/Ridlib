@@ -31,7 +31,7 @@
 # 📖 [Ridlib] <a name="about-project"></a>
 
 
-**[Ridlib]** , an innovative online library application, seamlessly blends the power of Ruby on Rails, Stimulus.Js, Turbo Streams, and PostgreSQL to deliver an enriching reading experience. Hosted on Digital Ocean via Dokku, RidLiv boasts a clean and responsive UI, ensuring a user-friendly interface across various devices, be it a phone, PC, or any web-browsing device.
+**[Ridlib]** , an online library application, seamlessly blends the power of Ruby on Rails, Stimulus.Js, Turbo Streams, and PostgreSQL to deliver an enriching reading experience. Hosted on Digital Ocean via Dokku, RidLiv boasts a clean and responsive UI, ensuring a user-friendly interface across various devices, be it a phone, PC, or any web-browsing device.
 
 With a vast collection exceeding 70,000 books, RidLiv provides users with unrestricted access to a diverse literary world. Beyond mere exploration, users can actively engage with the content by rating, liking, and offering insightful reviews on the available books. RidLiv, a gateway to the literary realm, combines functionality with a sleek design, making it the go-to platform for book enthusiasts seeking both convenience and community engagement.
 
@@ -76,8 +76,8 @@ In order to run this project you need:
 Clone the repository to your desired directory:
 
 ```
-  $ git clone https://github.com/ridwanediallo/Book-review/
-  $ cd Book-review
+  $ git clone https://github.com/ridwanediallo/Ridlib.git
+  $ cd Ridlib
 ```
 
 ### Install
@@ -92,6 +92,7 @@ To be able to start this app you need to run the following commands
 
 ```
  $ rails db:create db:migrate db:migrate RAILS_ENV=test
+ $ rails assets:precompile
  $ rails server
 ```
 
@@ -131,7 +132,7 @@ To run tests, run the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/ridwanediallo/Book-review/issues).
+Feel free to check the [issues page](https://github.com/ridwanediallo/Ridlib.git/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -148,6 +149,7 @@ If you like this project please leave us a star
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
 <!-- - Thanks to [HiCounselor](https://hicounselor.com/) for giving us the opportinuty to work on this project. -->
+Many thanks to Chris Zetter my mentor for all his help and support. He was there available to help if I get stuck or have a question. And if this app has been made available to because him helped with the deployement with Dokku and paying the hosting on Digital Ocean.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
