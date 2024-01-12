@@ -1,6 +1,7 @@
 require 'net/http'
 
 class BooksController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
   before_action :set_book, only: %i[ show edit update destroy ]
 
   def index
@@ -33,7 +34,7 @@ class BooksController < ApplicationController
     end
     @book.save!
 
-    @user_rating = current_user.ratings.find_by(book: @book)
+    @user_rating = current_user&.ratings&.find_by(book: @book)
     @ratings = Rating.where(book_id: @book.id).pluck(:rating)
   end
 
