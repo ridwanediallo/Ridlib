@@ -15,7 +15,7 @@
     <% if can? :destroy, comment %>
        <div class="flex items-center w-full text-left cursor-pointer rounded hover:bg-red-600 transition  text-red-600 hover:text-white px-4 py-2 text-sm">
          <%= image_tag ("delete-icon.png"), class: "w-4 h-4 mr-2" %>
-         <%= button_to 'Delete', book_comment_path(book.book_id, comment.id), method: :delete, data: { turbo_frame: 'modal' } %>
+         <%= button_to 'Delete', book_comment_path(book.book_id, comment.id), method: :delete, data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?', 'turbo-frame': 'modal' } %>
        </div>
     <% end %>
   </div>
