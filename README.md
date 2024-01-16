@@ -149,7 +149,7 @@ If you like this project please leave us a star
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
 <!-- - Thanks to [HiCounselor](https://hicounselor.com/) for giving us the opportinuty to work on this project. -->
-Many thanks to Chris Zetter my mentor for all his help and support. He was there available to help if I get stuck or have a question. And if this app has been made available to because him helped with the deployement with Dokku and paying the hosting on Digital Ocean.
+Many thanks to [Chris Zetter](https://github.com/zetter) my mentor for all his help and support. He was there available to help if I get stuck or have a question. And if this app has been made available to because him helped with the deployement with Dokku and paying the hosting on Digital Ocean.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
