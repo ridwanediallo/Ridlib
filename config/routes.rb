@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :books do
     member do
       post :create_comment
@@ -10,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:create, :destroy]
-  resources :rates, only: [:create]
+  resources :rating, only: [:create]
 
 
 

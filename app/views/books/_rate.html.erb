@@ -15,7 +15,7 @@
     <p class="ml-4 font-bold text-3xl"><%= average_rating %></p>
     <p class="ml-4 "><%= ratings&.empty? ? 0 : pluralize(ratings&.sum, 'rating') %></p>
     <p class="ml-4"><%= ratings&.empty? ? 0 : pluralize(ratings&.count, 'review') %></p>
-    
+
   </div>
 </div>
 
