@@ -22,22 +22,23 @@ RSpec.describe Rating, type: :request do
     )
   }
 
-  subject {
-    Rating.new(
-      user_id: user.id,
-      book_id: book.id,
-      rating: 5
-    )
-  }
 
-    it 'creates a rating with the lowest valid rating' do
-        sign_in user
+    it "Check if rating has successfully been created" do
+      sign_in user
+      post  rating_index_path, params: { rating: { book_id: book.id, rating: 4 } }
 
-        post  rating_index_path, params: { rating: { book_id: book.id, rating: 1 } }
+      rate = Rating.first()
+      expect(rate).to be_present
+    end
 
-        follow_redirect!
 
-        expect(response).to be_successful
+    it "Rating should be 5" do
+      sign_in user
+
+      post  rating_index_path, params: { rating: { book_id: book.id, rating: 5 } }
+
+      rate = Rating.first()
+      expect(rate.rating).to eq(5)
     end
 
     it 'creates a rating with the highest valid rating' do
