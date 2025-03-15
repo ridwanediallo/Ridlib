@@ -1,4 +1,5 @@
 require_relative "boot"
+require "base64"
 
 require "rails/all"
 

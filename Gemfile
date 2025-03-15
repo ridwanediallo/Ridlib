@@ -1,10 +1,18 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "3.4.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
+
+gem "base64", "~> 0.2"
+
+# BigDecimal is required for Active Record
+gem "bigdecimal", "~> 3.0"
+
+# Mutex_m is required by Rails
+gem "mutex_m", "~> 0.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
